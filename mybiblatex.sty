@@ -1,0 +1,117 @@
+\ProvidesPackage{mybiblatex}
+
+%%%biblatex
+\usepackage[backend=biber,sorting=hot,maxbibnames=1,style=authortitle]{biblatex}
+%datamodel=mymodels
+
+%\DeclareFieldFormat[article,online,book]{searchbib}{}%
+
+\renewcommand*{\bibsetup}{% bibsetup
+  \interlinepenalty=10000\relax % default is 5000
+  \widowpenalty=10000\relax
+  \clubpenalty=10000\relax
+  \raggedbottom
+  \frenchspacing
+  \biburlsetup}
+  
+%%% biblatex sorting schemes
+\DeclareSortingTemplate{hot}{
+\sort{\field{year}}
+\sort{\field{title}}
+}
+
+%%hedings
+\defbibheading{bibintoc}[\bibname]{% heading section
+\section{#1}%
+%\markboth{#1}{#1}
+}
+
+%% SOURCE MAPS %%%
+%\DeclareSourcemap{
+%  \maps[datatype=bibtex]{
+%    \map{
+%      \step[fieldsource=searchbib]
+%      \step[fieldset=keywords, fieldvalue={defsb}]
+%    }
+%  }
+%}
+
+%%biblatex filters
+\defbibfilter{pps}{keyword={pps}}%%% cose da usare in PPS ora
+\defbibcheck{bibsearchdef}{\iffieldundef{note}{\skipentry}{}}% ha searchbib definito
+%%%%
+
+%\iffieldequals
+%\ifkeyword{⟨keyword⟩}{⟨true⟩}{⟨false⟩}
+%\defbibfilter{modesfreqobs}{keyword={rotation} and (keyword={splitting} or %keyword={instruments} or keyword={splitting} or keyword={modes} or %keyword={frequencies})}
+%\iffieldequalstr{keyword}{rotation}
+
+%% Solar System Phenomenology
+\defbibfilter{solsysplanets}{keyword={solar system} or keyword={Mercury} or keyword={Venus}}
+
+\defbibcheck{modesfreqobs}{\ifboolexpr{(test {\ifkeyword{splittings}} or test {\ifkeyword{instruments}} or test {\ifkeyword{keyword}{modes}} or test {\ifkeyword{frequencies}} or test {\ifkeyword{g-modes}} or test {\ifkeyword{p-modes}} or test {\ifkeyword{rotation}}) and test {\ifkeyword{rotation}}}{}{\skipentry}}%
+
+%\defbibcheck{bibsearchdef}{%
+%  \ifboolexpr{ 
+%    test {\iffieldundef{searchbib}}
+%  }{%
+%\skipentry
+%}{%
+%}
+%}
+
+%\defbibcheck{online}{%
+%  \ifboolexpr{ 
+%    not test {\iffieldundef{Url}} and not test {\iffieldundef{Urldate}}
+%  }{% Entry has both url and urldate -> it's a web source  
+%  }{%
+%    \skipentry
+%  }
+%}
+
+%%% bibliography environment ... (printbibliography left aligned)
+\DeclareFieldFormat{labelnumberwidth}{#1\adddot}%
+
+\newbool{isreasearch}
+
+\AtEveryBibitem{%
+ \ifbool{isreasearch}
+  {%
+   \clearfield{pages}%
+   \clearfield{volume}%
+   \clearfield{journal}%
+   \clearfield{addendum}
+  }{
+  \clearfield{note}}%
+  }
+  
+\DeclareFieldFormat*{note}{\newline\printtext{To scholar:} #1}
+    
+% default bibliography environment (from biblatex.sty)
+\defbibenvironment{bibliography} 
+  {\list{}{%
+     \leftmargin\bibhang 
+     \itemindent-\leftmargin 
+     \itemsep\bibitemsep
+      \parsep\bibparsep}}
+  {\endlist}
+  {\item}
+
+% 'numeric' bibliography environment (from numeric.bbx)
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{prefixnumber}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+     \addtolength{\leftmargin}{\labelsep}%
+      \addtolength{\leftmargin}{-\labelsep}% <-- changed
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+  
+%\ifnameequals{〈name list〉}{〈macro〉}{〈true〉}{〈false〉} Expands totrue) if the value of the〈name list〉is equal to the definition of〈macro〉,and to〈false〉otherwise

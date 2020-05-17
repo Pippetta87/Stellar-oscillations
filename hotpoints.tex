@@ -1,0 +1,74 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+\newrefcontext[sorting=hot]
+%\printbibliography[filter={terrestrialplanets},keyword={primary},heading=bibintoc,title={\textcolor{beaver}{Biblio about: ''Sistema solare: pianeti terrestri''}}]
+%\printbibliography[filter={terrestrialplanets},notkeyword={primary},heading=bibintoc,title={\textcolor{beaver}{Other refs about: ''Sistema solare: pianeti terrestri''}}]
+
+{\let\clearpage\relax
+\chapter{Helioseismology}
+}
+
+\begin{refsection}[solarsystem.bib]
+\begingroup
+\nocite{*}
+\let\clearpage\relax
+%\settoggle{bbx:note}{false}
+%\AtNextBibliography{\AtEveryBibitem{\clearlist{note}}}
+\boolfalse{isreasearch}
+\printbibliography[filter={pps},heading=bibintoc,title={\textcolor{antiquefuchsia}{Vincoli a formazione planetaria da modelli/osservazioni formazione sistema solare}}]
+\booltrue{isreasearch}
+\printbibliography[filter={pps},check=bibsearchdef,heading=bibintoc,title={\textcolor{antiquefuchsia}{Bib research}}]
+\endgroup
+\end{refsection}
+
+\section{CAI, Chondrules etc}
+
+\section{Jupiter obseravtions and interior models}
+
+\begin{enumerate}[label=(\alph*)]
+    \item \cite{serra2016gravimetry}. High accuracy: relativistic perturbation. Dynamics involved in simulation - Spacecraft around Jupiter, baricenter of Jupiter system around the Sun. Gravity field of Jupiter expansion in spherical harmonics ($\Sigma_{BF}=O\hat{e}_1\hat{e}_2\hat{e}_3$, $\hat{e}_3\parallel\vec{\Omega}_J$,  body fixed RF): kaula 66. Gravitational potential at SC (spacecraft):
+    \begin{equation*}
+    U(r,\theta,\lambda)=\frac{GM_J}{r}\sum_l\sum_m^l\frac{R_J^l}{r^l}[C_{lm}\cos{(m\lambda)}+S_{lm}\sin{(m\lambda)}]P_{lm}(\sin{(\theta)})
+    \end{equation*}
+    Zonal coeff.: $C_{lm}, m=0$
+    Tesseral coeff.: $C_{lm}, S_{lm}, 0<m<l$
+    Greavitational moments of deg l: $J_l=-C_{l0}$ - opposite of zonal coeff. of deg l.
+    Supponiamo asse di rotazione \'e la direzione che massimizza momento inerzia $I_{33}$;
+    \begin{align*}
+    &[\hat{e}_3]_{\Sigma_{EQ}}=(\sin{\delta_1}\cos{\delta_2},-\sin{\delta_2},\cos{\delta_1}\cos{\delta_2})\\
+    &R(t)=R_3(\phi_t)R_1(\delta_2)R_2(\delta_1): \Sigma_{EQ}\to\Sigma_{BF}
+    \end{align*}
+    Perturbations: tidal deformation of Jupiter due to Galileian satellites (static tidal theory)
+    \begin{align*}
+    &U_{Love}=\sum_{l=2}^{\infty}\frac{k_lGM_PR^{2l+1}}{r_P^{l+1}r^{l+1}}P_l(\cos{\phi})
+    \end{align*}
+    $k_l$ measure jupiter response to perturbations, $\phi$ is the angle between perturbing body and orbiter.
+    Lense-Thirring effect: central mass rotates endowed with angular momentum $\vec{J}$; precession of longitude of ascending node of body in gravity field of a central mass:
+    \begin{align*}
+    &\vec{a}_{LT}=\frac{(1+\gamma)G}{c^2r^3}[-\vec{J}\wedge\dvec{r}+\frac{3(\scap{J}{r})(\vec{r}\wedge\dvec{r})}{r^2}]
+    \end{align*}
+    \item \cite{helled2014measuring}.
+    \item \cite{debras2019new}
+    \begin{enumerate}[label=(\roman*)]
+        \item Low value of high order gravitational moments and new for H/He denser in \si{\mega\bar} region (conflict with Galileo).
+        \item Jupiter models satisfying Galileo/Juno contrains: 4 different regions (oter convective envelope, region of compositional changes, inner convective envelope, )
+    \end{enumerate}
+\end{enumerate}
+
+{\let\clearpage\relax
+\chapter{Struttura orbitale sistemi planetarii}
+}
+
+\begin{refsection}[orbitalevolution.bib,helio.bib]
+\begingroup
+\nocite{*}
+\let\clearpage\relax
+\printbibliography[filter={pps},heading=bibintoc,title={\textcolor{antiquefuchsia}{Evoluzione orbitale in PPD e dopo che \'e dissipato}}]
+\endgroup
+\end{refsection}
+
+
+
+\end{document}

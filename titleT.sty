@@ -1,0 +1,27 @@
+\ProvidesPackage{titleT}
+
+%\pretocmd{\chapter}{\numdef\chapnum{\thechapter+1}\newtoggle{chapsec\chapnum}}{}{}
+%\pretocmd{\section}{\toggletrue{chapsec\thechapter}}{}{}
+
+\usepackage{titletoc}
+\setcounter{tocdepth}{1}
+
+\usepackage[compact,toctitles]{titlesec}
+\titleclass{\part}{top}
+
+\titleformat{\part}[block]{\huge\bfseries\centering\vspace*{2cm}}{\thepart}{10pt}{\huge}[\vspace*{2cm}]
+
+\titleformat{\chapter}[block]
+{\huge}{C\thechapter:\ }{0pt}{\huge}[{\chaptoc}%\iftoggle{chapsec\chapnum}{\chaptoc}{NS}
+]
+
+\titleformat{\section}{\LARGE}{S\thesection:\ }{0pt}{\LARGE}[]
+
+\titleformat{\subsection}[display]{\large}{}{0pt}{\large\scshape}[]
+
+
+\titlespacing*{\part}{0pt}{0pt}{0pt}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
